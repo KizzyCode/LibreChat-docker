@@ -57,5 +57,4 @@ USER librechat
 ENV MONGO_URI "mongodb://127.0.0.1:27017/LibreChat"
 ENV HOST 0.0.0.0
 ENV PORT 3080
-ENV ALLOW_REGISTRATION true
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]

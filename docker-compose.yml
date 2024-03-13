@@ -7,6 +7,8 @@ services:
       # Database directory; should be owned by UID 10000
       - ./persist:/home/librechat/userdata:rw
     environment:
+      # Whether to enable or disable user registration
+      ALLOW_REGISTRATION: true
       # Secrets for credential management
       CREDS_KEY: "0000000000000000000000000000000000000000000000000000000000000000" # FIXME
       CREDS_IV: "00000000000000000000000000000000" # FIXME
