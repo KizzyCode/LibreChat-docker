@@ -36,6 +36,9 @@ RUN apt-get update \
     && apt-get autoremove --yes \
     && apt-get clean
 
+# Copy supervisord config
+COPY ./files/supervisord.conf /etc/supervisord.conf
+
 # Switch to librechat user context
 RUN adduser --disabled-password --uid 10000 librechat
 USER librechat
@@ -48,12 +51,7 @@ RUN npm clean-install
 RUN npm run build:data-provider
 RUN npm run frontend
 
-# Copy supervisord config
-USER root
-COPY ./files/supervisord.conf /etc/supervisord.conf
-
-# Run supervisord as librechat user to start all services
-USER librechat
+# Setup fixed environment and start services
 ENV MONGO_URI "mongodb://127.0.0.1:27017/LibreChat"
 ENV HOST 0.0.0.0
 ENV PORT 3080
