@@ -1,0 +1,14 @@
+services:
+  librechat:
+    build: ./
+    ports:
+      - "3080:3080/tcp"
+    volumes:
+      # Database directory; should be owned by UID 10000
+      - ./persist:/home/librechat/userdata:rw
+    environment:
+      # Secrets for credential management
+      CREDS_KEY: "0000000000000000000000000000000000000000000000000000000000000000" # FIXME
+      CREDS_IV: "00000000000000000000000000000000" # FIXME
+      JWT_SECRET: "0000000000000000000000000000000000000000000000000000000000000000" # FIXME
+      JWT_REFRESH_SECRET: "0000000000000000000000000000000000000000000000000000000000000000" # FIXME
